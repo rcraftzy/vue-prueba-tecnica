@@ -1,11 +1,10 @@
 <script setup>
-import DataTable from 'primevue/datatable'
-import RadioButton from 'primevue/radiobutton'
-import Column from 'primevue/column'
 import Button from 'primevue/button'
 import { getAllProducts, getAllCategories } from '../services/api'
 import { computed, onMounted, ref } from 'vue'
 import SearchBar from '../components/SearchBar.vue'
+import CategoryList from '../components/CategoryList.vue'
+import ProductList from '../components/ProductList.vue'
 
 const products = ref([])
 const categories = ref([])
@@ -33,7 +32,7 @@ const columns = [
 ]
 
 const filterProducts = (keyword) => {
-  searchKeyword.value = keyword // Actualiza searchKeyword con el valor del filtro
+  searchKeyword.value = keyword
 }
 
 const filteredProducts = computed(() => {
@@ -51,26 +50,15 @@ const filteredProducts = computed(() => {
   })
 })
 
-const handleCategoryChange = () => {
-  filteredProducts.value = filteredProducts.value.slice
+const handleCategoryChange = (category) => {
+  selectedCategory.value = category
 }
 </script>
 <template>
   <section class="homeContainer">
     <aside class="sidebar">
       <div class="card flex justify-content-center">
-        <div class="flex flex-column gap-3">
-          <div :key="'All'">
-            <RadioButton v-model="selectedCategory" inputId="All" name="dynamic" value=""
-              @change="handleCategoryChange" />
-            <label for="All" class="ml-2">{{ " " }}All</label>
-          </div>
-          <div v-for="category in categories" :key="category.key" class="flex align-items-center">
-            <RadioButton v-model="selectedCategory" :inputId="category" name="dynamic" :value="category"
-              @change="handleCategoryChange" />
-            <label :for="category.key" class="ml-2">{{ " " + category.charAt(0).toUpperCase() + category.slice(1) }}</label>
-          </div>
-        </div>
+        <CategoryList :categories="categories" :onCategoryChange="handleCategoryChange" />
       </div>
     </aside>
     <section class="content">
@@ -82,19 +70,7 @@ const handleCategoryChange = () => {
           <Button icon="pi pi-shopping-cart" severity="secondary" aria-label="Bookmark" />
         </div>
       </div>
-      <DataTable paginator :rows="10" :value="filteredProducts" tableStyle="min-width: 50rem">
-        <Column header="Imagen">
-          <template #body="slotProps">
-            <img :src="`${slotProps.data.image}`" :alt="slotProps.data.image" class="w-6rem shadow-2 border-round" />
-          </template>
-        </Column>
-        <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
-        <Column :exportable="false" style="min-width:8rem">
-        <template #body="slotProps">
-          <Button icon="pi pi-shopping-cart" label="Add" class="mr-2" @click="editProduct(slotProps.data)" />
-        </template>
-    </Column>
-      </DataTable>
+      <ProductList :products="filteredProducts" :columns="columns" />
     </section>
   </section>
 </template>
@@ -129,4 +105,5 @@ img {
 
 .searchBar {
   width: 70%;
-}</style>
+}
+</style>
