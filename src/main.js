@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
-import './style.css'
+import 'primevue/resources/themes/lara-light-teal/theme.css'
 import App from './App.vue'
 import router from './router'
+import PrimeVue from 'primevue/config'
 
 createApp(App)
+  .use(PrimeVue)
   .use(router)
   .mount('#app')
