@@ -3,6 +3,13 @@ import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import { defineProps } from 'vue'
 import Button from 'primevue/button'
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const addToCart = (product) => {
+  store.commit('addToCart', product)
+}
 
 defineProps({
   columns: Object,
@@ -20,7 +27,7 @@ defineProps({
     <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
     <Column :exportable="false" style="min-width:8rem">
       <template #body="slotProps">
-        <Button icon="pi pi-shopping-cart" label="Add" class="mr-2" @click="editProduct(slotProps.data)" />
+        <Button icon="pi pi-shopping-cart" label="Add" class="mr-2" @click="addToCart(slotProps.data)" />
       </template>
     </Column>
   </DataTable>
