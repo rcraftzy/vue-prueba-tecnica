@@ -17,6 +17,7 @@ specifiers:
   vite: ^4.4.5
   vue: ^3.3.4
   vue-router: ^4.2.5
+  vuex: ^4.0.2
 
 dependencies:
   axios: 1.6.0
@@ -24,6 +25,7 @@ dependencies:
   primevue: 3.39.0_vue@3.3.7
   vue: 3.3.7
   vue-router: 4.2.5_vue@3.3.7
+  vuex: 4.0.2_vue@3.3.7
 
 devDependencies:
   '@vitejs/plugin-vue': 4.4.0_vite@4.5.0+vue@3.3.7
@@ -2302,6 +2304,15 @@ packages:
       '@vue/runtime-dom': 3.3.7
       '@vue/server-renderer': 3.3.7_vue@3.3.7
       '@vue/shared': 3.3.7
+    dev: false
+
+  /vuex/4.0.2_vue@3.3.7:
+    resolution: {integrity: sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==}
+    peerDependencies:
+      vue: ^3.0.2
+    dependencies:
+      '@vue/devtools-api': 6.5.1
+      vue: 3.3.7
     dev: false
 
   /which-boxed-primitive/1.0.2:
