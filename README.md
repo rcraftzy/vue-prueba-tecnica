@@ -1,7 +1,47 @@
-# Vue 3 + Vite
+<div align="center">
+  
+  # <img src="https://raw.githubusercontent.com/roberto-carlos-tg/portfolio-fresh/master/static/favicon/favicon.ico" height="30px"/> PRUEBA TECNICA VUE
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+</div>
 
-## Recommended IDE Setup
+## Getting Started
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+#### Install the dependencies:
+
+```sh
+npm install
+// or
+yarn
+pnpm install
+```
+
+#### Run in dev mode:
+
+```sh
+npm run dev
+// or
+yarn dev
+pnpm dev
+```
+
+### Built With
+
+- JavaScript
+- [Vite](https://vitejs.dev)
+- [Vue](https://vuejs.org/)
+
+#### Packages
+- Vue
+- Vuex
+- PrimeVue
+- PrimeIcons
+- Axios
+    
+#### Dev Packages
+- Eslint
+- Prettier
+
+## Contact 📭
+
+**Roberto Carlos TG** - roberto.tg99@gmail.com
+  
