@@ -1,15 +1,18 @@
 <script setup>
 import Button from 'primevue/button'
+import Dialog from 'primevue/dialog'
 import { getAllProducts, getAllCategories } from '../services/api'
 import { computed, onMounted, ref } from 'vue'
 import SearchBar from '../components/SearchBar.vue'
 import CategoryList from '../components/CategoryList.vue'
 import ProductList from '../components/ProductList.vue'
+import ShoppingCart from '../components/ShoppingCart.vue'
 
 const products = ref([])
 const categories = ref([])
 const searchKeyword = ref('')
 const selectedCategory = ref('')
+const visible = ref(false)
 
 const fetchData = async () => {
   const [productsData, categoriesData] = await Promise.all([
@@ -56,6 +59,10 @@ const handleCategoryChange = (category) => {
 </script>
 <template>
   <section class="homeContainer">
+    <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50rem' }"
+      :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+      <ShoppingCart />
+    </Dialog>
     <aside class="sidebar">
       <div class="card flex justify-content-center">
         <CategoryList :categories="categories" :onCategoryChange="handleCategoryChange" />
@@ -67,7 +74,7 @@ const handleCategoryChange = (category) => {
           <SearchBar :onFilter="filterProducts" />
         </div>
         <div>
-          <Button icon="pi pi-shopping-cart" severity="secondary" aria-label="Bookmark" />
+          <Button icon="pi pi-shopping-cart" severity="secondary" aria-label="Bookmark" @click="visible = true" />
         </div>
       </div>
       <ProductList :products="filteredProducts" :columns="columns" />
@@ -105,5 +112,4 @@ img {
 
 .searchBar {
   width: 70%;
-}
-</style>
+}</style>
