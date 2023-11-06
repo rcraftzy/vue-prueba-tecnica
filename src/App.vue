@@ -59,15 +59,6 @@ const handleCategoryChange = (category) => {
 </script>
 <template>
   <section class="homeContainer">
-    <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50rem' }"
-      :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
-      <ShoppingCart />
-    </Dialog>
-    <aside class="sidebar">
-      <div class="card flex justify-content-center">
-        <CategoryList :categories="categories" :onCategoryChange="handleCategoryChange" />
-      </div>
-    </aside>
     <section class="content">
       <div class="headerTable">
         <div class="searchBar">
@@ -77,8 +68,13 @@ const handleCategoryChange = (category) => {
           <Button icon="pi pi-shopping-cart" severity="secondary" aria-label="Bookmark" @click="visible = true" />
         </div>
       </div>
+      <CategoryList :categories="categories" :onCategoryChange="handleCategoryChange" />
       <ProductList :products="filteredProducts" :columns="columns" />
     </section>
+    <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50rem' }"
+      :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+      <ShoppingCart />
+    </Dialog>
   </section>
 </template>
 
@@ -87,21 +83,9 @@ img {
   width: 6rem;
 }
 
-.sidebar {
-  margin-left: 20px;
-  grid-row: span 3;
-}
-
-.content {
-  margin-left: 120px;
-  margin-right: 20px;
-}
-
 .homeContainer {
-  display: grid;
-  margin: 0;
-  margin-top: 20px;
-  grid-auto-flow: column;
+  max-width: 52rem;
+  margin: 20px auto 0
 }
 
 .headerTable {
