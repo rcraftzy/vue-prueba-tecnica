@@ -3,11 +3,15 @@ import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import Button from 'primevue/button'
 import { useStore } from 'vuex'
+import { useToast } from 'primevue/usetoast'
+import Toast from 'primevue/toast'
 
 const store = useStore()
+const toast = useToast()
 
 const addToCart = (product) => {
   store.commit('addToCart', product)
+  toast.add({ severity: 'info', summary: 'Cart Updated', detail: 'Product added', life: 3000 })
 }
 
 defineProps({
@@ -17,6 +21,7 @@ defineProps({
 
 </script>
 <template>
+  <Toast />
   <DataTable paginator :rows="10" :value="products" tableStyle="min-width: 50rem">
     <Column header="Imagen">
       <template #body="slotProps">

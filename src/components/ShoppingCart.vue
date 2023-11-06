@@ -3,8 +3,11 @@ import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import { useStore } from 'vuex'
 import Button from 'primevue/button'
+import { useToast } from 'primevue/usetoast'
+import Toast from 'primevue/toast'
 
 const store = useStore()
+const toast = useToast()
 
 const increment = (id) => {
   store.commit('incrementQuantity', id)
@@ -18,10 +21,12 @@ const formatCurrency = (value) => {
 }
 const remove = (id) => {
   store.commit('removeProduct', id)
+  toast.add({ severity: 'success', summary: 'Drop product', detail: 'Product removed', life: 3000 })
 }
 </script>
 
 <template>
+  <Toast />
   <DataTable :rows="10" :value="products" tableStyle="min-width: 50rem">
     <Column header="Imagen">
       <template #body="slotProps">
