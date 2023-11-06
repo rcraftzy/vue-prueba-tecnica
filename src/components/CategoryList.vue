@@ -1,6 +1,6 @@
 <script setup>
 import RadioButton from 'primevue/radiobutton'
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 
 const selectedCategory = ref('')
 

@@ -2,7 +2,7 @@
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 
 const searchKeyword = ref('')
 const { onFilter } = defineProps(['onFilter'])

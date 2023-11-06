@@ -1,7 +1,6 @@
 <script setup>
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
-import { defineProps } from 'vue'
 import Button from 'primevue/button'
 import { useStore } from 'vuex'
 
