@@ -18,15 +18,25 @@ const emitCategoryChange = (category) => {
 }
 </script>
 <template>
-  <div class="flex flex-column gap-3">
+  <div class="category-list">
     <div :key="'All'">
-      <RadioButton v-model="selectedCategory" inputId="" name="dynamic" value="" @change='emitCategoryChange("")' />
+      <RadioButton v-model="selectedCategory" inputId="" class="category" name="dynamic" value="" @change='emitCategoryChange("")' />
       <label for="All" class="ml-2">{{ " " }}All</label>
     </div>
-    <div v-for="category in categories" :key="category" class="flex align-items-center">
+    <div v-for="category in categories" :key="category" class="category">
       <RadioButton v-model="selectedCategory" :inputId="category" name="dynamic" :value="category"
         @change="emitCategoryChange(category)" />
       <label :for="category.key" class="ml-2">{{ " " + category.charAt(0).toUpperCase() + category.slice(1) }}</label>
     </div>
   </div>
 </template>
+
+<style>
+.category-list {
+  display: flex;
+  margin: 20px 0;
+}
+.category {
+  margin: 0 10px;
+}
+</style>
