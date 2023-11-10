@@ -1,19 +1,15 @@
-<script setup>
-import InputText from 'primevue/inputtext'
-import Button from 'primevue/button'
-
-import { ref } from 'vue'
-
-const searchKeyword = ref('')
-const { onFilter } = defineProps(['onFilter'])
-
-const filterItems = () => {
-  onFilter(searchKeyword.value)
-}
-</script>
 <template>
   <div class="p-inputgroup flex-1">
-    <InputText placeholder="Keyword" v-model="searchKeyword" @input="filterItems" />
+    <InputText placeholder="Buscar..." v-model="searchKeyword" @input="filterProducts(searchKeyword)" />
     <Button icon="pi pi-search" severity="warning" />
   </div>
 </template>
+
+<script setup lang="ts">
+import InputText from 'primevue/inputtext'
+import Button from 'primevue/button'
+
+import useProducts from '../composables/useProducts'
+
+const { searchKeyword, filterProducts } = useProducts()
+</script>

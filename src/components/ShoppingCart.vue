@@ -1,30 +1,3 @@
-<script setup>
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
-import { useStore } from 'vuex'
-import Button from 'primevue/button'
-import { useToast } from 'primevue/usetoast'
-import Toast from 'primevue/toast'
-
-const store = useStore()
-const toast = useToast()
-
-const increment = (id) => {
-  store.commit('incrementQuantity', id)
-}
-const decrement = (id) => {
-  store.commit('decrementQuantity', id)
-}
-const products = store.getters.allProducts
-const formatCurrency = (value) => {
-  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
-}
-const remove = (id) => {
-  store.commit('removeProduct', id)
-  toast.add({ severity: 'success', summary: 'Drop product', detail: 'Product removed', life: 3000 })
-}
-</script>
-
 <template>
   <Toast />
   <DataTable :rows="10" :value="products" tableStyle="min-width: 50rem">
@@ -61,6 +34,17 @@ const remove = (id) => {
     </Column>
   </DataTable>
 </template>
+
+<script setup lang="ts">
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
+import Button from 'primevue/button'
+import Toast from 'primevue/toast'
+import useProducts from '../composables/useProducts'
+
+const { formatCurrency, increment, decrement, remove, productsCart: products } = useProducts()
+
+</script>
 
 <style>
 .counter {
