@@ -1,24 +1,24 @@
 import { useStore } from 'vuex'
-import { getAllProducts, getAllCategories } from '../services/api'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { Product } from '../interfaces/product'
 import { useToast } from 'primevue/usetoast'
 
 export default function useProducts () {
   const store = useStore()
   const toast = useToast()
+  const selectedCategory = ref(store.state.selectedCategory)
 
   const fetchData = async () => {
-    store.commit('loadProducts', await getAllProducts())
-    store.commit('loadCategories', await getAllCategories())
+    await store.dispatch('loadProducts')
+    await store.dispatch('loadCategories')
   }
 
   const filterProducts = (keyword: string) => {
-    store.commit('setSearchKeyword', keyword)
+    store.dispatch('setSearchKeyword', keyword)
   }
 
   const handleCategoryChange = (category: string) => {
-    store.commit('setSelectedCategory', category)
+    store.dispatch('setSelectedCategory', category)
   }
 
   const filteredProducts = computed(() => {
@@ -37,20 +37,20 @@ export default function useProducts () {
   })
 
   const addToCart = (product: Product) => {
-    store.commit('addToCart', product)
+    store.dispatch('addToCart', product)
     toast.add({ severity: 'info', summary: 'Cart Updated', detail: 'Product added', life: 3000 })
   }
 
   const increment = (id: number) => {
-    store.commit('incrementQuantity', id)
+    store.dispatch('increment', id)
   }
   const decrement = (id: number) => {
-    store.commit('decrementQuantity', id)
+    store.dispatch('decrement', id)
   }
   const productsCart = store.getters.allProducts
 
   const remove = (id: number) => {
-    store.commit('removeProduct', id)
+    store.dispatch('remove', id)
     toast.add({ severity: 'success', summary: 'Drop product', detail: 'Product removed', life: 3000 })
   }
 
@@ -61,7 +61,7 @@ export default function useProducts () {
   return {
     //! Methods
     searchKeyword: store.state.searchKeyword,
-    selectedCategory: computed(() => store.state.selectedCategory),
+    selectedCategory,
     filterProducts,
     filteredProducts,
     handleCategoryChange,
