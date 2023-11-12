@@ -75,6 +75,6 @@ export default function useProducts () {
     //! Properties
     productsCart,
     products: computed(() => store.state.products),
-    categories: computed(() => store.state.categories),
+    categories: computed(() => store.state.categories)
   }
 }
