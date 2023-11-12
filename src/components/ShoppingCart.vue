@@ -1,35 +1,35 @@
 <template>
   <Toast />
-  <DataTable :rows="10" :value="products" tableStyle="min-width: 50rem">
-    <Column header="Imagen">
+  <DataTable :rows="10" :value="products" tableStyle="min-width: 40rem" :header="false">
+    <Column>
       <template #body="slotProps">
-        <img :src="`${slotProps.data.image}`" :alt="slotProps.data.image" class="w-6rem shadow-2 border-round" />
+        <img :src="`${slotProps.data.image}`" :alt="slotProps.data.image" />
       </template>
     </Column>
-    <Column header="Precio">
+    <Column>
       <template #body="slotProps">
         {{ formatCurrency(slotProps.data.price) }}
       </template>
     </Column>
-    <Column header="Cantidad">
+    <Column>
       <template #body="slotProps">
         <div class="counter">
-          <Button icon="pi pi-plus" outlined severity="success" rounded class="mr-2"
+          <Button icon="pi pi-plus" size="small" severity="secondary" outlined class="mr-2"
             @click="increment(slotProps.data.id)" />
           <div>{{ slotProps.data.quantity }}</div>
-          <Button icon="pi pi-minus" outlined severity="warning" rounded class="mr-2"
+          <Button icon="pi pi-minus" size="small" severity="secondary" outlined class="mr-2"
             @click="decrement(slotProps.data.id)" />
         </div>
       </template>
     </Column>
-    <Column header="Total">
+    <Column>
       <template #body="slotProps">
         {{ formatCurrency(slotProps.data.totalPrice) }}
       </template>
     </Column>
     <Column>
     <template #body="slotProps">
-      <Button icon="pi pi-times" severity="danger" rounded aria-label="Cancel" @click="remove(slotProps.data.id)"/>
+      <Button icon="pi pi-times" severity="danger" size="small" text rounded aria-label="Cancel" @click="remove(slotProps.data.id)"/>
     </template>
     </Column>
   </DataTable>
@@ -46,9 +46,13 @@ const { formatCurrency, increment, decrement, remove, productsCart: products } =
 
 </script>
 
-<style>
+<style scoped>
 .counter {
   display: flex;
   align-items: center;
   gap: 10px
-}</style>
+}
+img {
+  width: 3rem;
+}
+</style>

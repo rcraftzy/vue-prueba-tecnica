@@ -12,7 +12,7 @@
       <CategoryList />
       <ProductList :columns="columns" />
     </section>
-    <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50rem' }"
+    <Dialog v-model:visible="visible" modal header="Shopping Cart" :style="{ width: '50rem' }"
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
       <ShoppingCart />
     </Dialog>
